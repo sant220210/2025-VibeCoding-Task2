@@ -40,7 +40,7 @@ const $ = cheerio.load(raw);
 // 2) 規則（HTML/SEO）
 const rules = [
   {
-    label: "基本結構 <html><head><body>",
+    label: "基本結構 `<html><head><body>`",
     check: () => {
       // 檢查原始碼中是否真的存在這些標籤，不依賴 Cheerio 自動補全
       const hasHtml = /<html\b[^>]*>/i.test(raw);
@@ -49,29 +49,29 @@ const rules = [
       return hasHtml && hasHead && hasBody;
     }
   },
-  { label: "<html lang>", check: () => $("html").attr("lang") },
+  { label: "`<html lang>`", check: () => $("html").attr("lang") },
   {
-    label: "<meta charset=\"UTF-8\">",
+    label: "`<meta charset=\"UTF-8\">`",
     check: () => {
       const charset = $("meta[charset]").attr("charset");
       return charset && charset.toUpperCase() === "UTF-8";
     }
   },
-  { label: "<title> 非空", check: () => $("title").text().trim().length > 0 },
+  { label: "`<title>` 非空", check: () => $("title").text().trim().length > 0 },
   {
-    label: "<meta name=description> 50~160",
+    label: "`<meta name=description>` 50~160",
     check: () => {
       const d = $('meta[name="description"]').attr("content");
       return d && d.length >= 50 && d.length <= 160;
     }
   },
-  { label: "<h1> 有且僅一個", check: () => $("h1").length === 1 },
+  { label: "`<h1>` 有且僅一個", check: () => $("h1").length === 1 },
   {
-    label: "<img> 皆有非空 alt",
+    label: "`<img>` 皆有非空 alt",
     check: () => $("img").toArray().every(el => ($(el).attr("alt") || "").trim().length > 0)
   },
   {
-    label: "<a> href 合法（非空/非 #）",
+    label: "`<a>` href 合法（非空/非 #）",
     check: () => $("a").toArray().every(el => {
       const h = ($(el).attr("href") || "").trim();
       return h && h !== "#";
