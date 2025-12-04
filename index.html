@@ -17,21 +17,337 @@
   </style>
 </head>
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
-    </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
-  </header>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>您的名字 · Frontend Developer｜個人品牌網站</title>
+  <meta name="description" content="這是一個展示個人前端開發背景、技能、作品集與聯絡方式的個人品牌網站，採用簡潔深色系設計，提供專業形象與作品呈現。">
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
-  </footer>
+  <style>
+  /* =========================================================
+     CSS:BASE — 全站基底樣式
+     ========================================================= */
+  /* CSS:BASE-START */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                 Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    background-color: #0f172a; /* 深藍深色背景 */
+    color: #e2e8f0;            /* 淺灰文字 */
+    line-height: 1.7;
+  }
+
+  .page {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 1.25rem;
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  a {
+    color: #38bdf8; /* 青色系主色 */
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* 導覽列 */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .nav-left {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    color: #e2e8f0;
+    font-size: 0.95rem;
+  }
+
+  .nav-link:hover {
+    color: #38bdf8;
+  }
+  /* CSS:BASE-END */
+
+
+  /* =========================================================
+     CSS:HERO — Hero 區域樣式
+     ========================================================= */
+  /* CSS:HERO-START */
+  .section-hero {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-image-wrapper {
+    margin-top: 1.5rem;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  /* CSS:HERO-END */
+
+
+  /* =========================================================
+     CSS:ABOUT — About 區域樣式
+     ========================================================= */
+  /* CSS:ABOUT-START */
+  .section-about {
+    background-color: #1e293b;
+    border-radius: 0.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  /* CSS:ABOUT-END */
+
+
+  /* =========================================================
+     CSS:SKILLS — Skills 區域樣式
+     ========================================================= */
+  /* CSS:SKILLS-START */
+  .section-skills {
+    background-color: #0f172a;
+  }
+
+  .skills-placeholder {
+    opacity: 0.9;
+  }
+  /* CSS:SKILLS-END */
+
+
+  /* =========================================================
+     CSS:PROJECTS — Projects 區域樣式
+     ========================================================= */
+  /* CSS:PROJECTS-START */
+  .section-projects {
+    background-color: #1e293b;
+    border-radius: 0.5rem;
+  }
+  /* CSS:PROJECTS-END */
+
+
+  /* =========================================================
+     CSS:CONTACT — Contact 區域樣式
+     ========================================================= */
+  /* CSS:CONTACT-START */
+  .section-contact {
+    background-color: #0f172a;
+  }
+
+  .contact-links {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  /* CSS:CONTACT-END */
+
+
+  /* =========================================================
+     CSS:RWD — 手機優先 RWD 媒體查詢
+     ========================================================= */
+  /* CSS:RWD-START */
+  @media (min-width: 768px) {
+    .section-hero {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .section-about .container,
+    .section-projects .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+  }
+  /* CSS:RWD-END */
+  </style>
+</head>
+
+
+<body>
+  <div class="page">
+
+    <!-- =========================================================
+         Header 導覽列
+         ========================================================= -->
+    <header class="site-header">
+      <div class="container nav">
+        <div class="nav-left">Your Name · Frontend Dev</div>
+        <nav class="nav-right">
+          <a class="nav-link" href="#hero">首頁</a>
+          <a class="nav-link" href="#about">關於我</a>
+          <a class="nav-link" href="#skills">技能</a>
+          <a class="nav-link" href="#projects">作品集</a>
+          <a class="nav-link" href="#contact">聯絡我</a>
+        </nav>
+      </div>
+    </header>
+
+
+    <main>
+
+      <!-- =========================================================
+           Hero 區 — SECTION SLOT
+         ========================================================= -->
+      <!-- SECTION:HERO-START -->
+      <section id="hero" class="section section-hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <h1 id="hero-heading">這裡是 Hero 區主視覺（之後會被正式內容取代）</h1>
+          <p>這裡目前是 Hero 區的占位內容。未來會放上您的一句話自我介紹、核心職稱（例如 Frontend Developer）、以及行動呼籲按鈕等。</p>
+          <p>之後會用 Section SDD 的 Prompt 產生新的 Hero 區版面與文案，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。</p>
+
+          <div class="hero-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1200&q=80"
+              alt="正在筆電前撰寫程式碼的前端開發者示意圖"
+              loading="lazy">
+          </div>
+        </div>
+      </section>
+      <!-- SECTION:HERO-END -->
+
+
+      <!-- =========================================================
+           About 區 — SECTION SLOT
+         ========================================================= -->
+      <!-- SECTION:ABOUT-START -->
+      <section id="about" class="section section-about" aria-labelledby="about-heading">
+        <div class="container">
+          <h2 id="about-heading" class="section-title">關於我（占位內容）</h2>
+          <p>這裡是 About 區目前的占位內容。未來會放上個人背景介紹、專業描述、照片與相關細節。</p>
+          <p>之後會用 Section SDD 的 Prompt 產生新版的 About 區，請開發者將新的 section 程式碼「整段貼在這兩個註解之間」以覆蓋本區塊。</p>
+
+          <div>
+            <img 
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
+              alt="開發者工作桌與筆電示意圖"
+              loading="lazy">
+          </div>
+        </div>
+      </section>
+      <!-- SECTION:ABOUT-END -->
+
+
+      <!-- =========================================================
+           Skills 區 — SECTION SLOT
+         ========================================================= -->
+      <!-- SECTION:SKILLS-START -->
+      <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
+        <div class="container">
+          <h2 id="skills-heading" class="section-title">技能（占位內容）</h2>
+          <p class="skills-placeholder">本區塊目前為 Skills 區占位內容。未來會顯示技術列表、能力分類、擅長工具等。</p>
+          <p>之後會用 Section SDD 的 Prompt 來產生正式的 Skills 區，請將新的 section 整段貼在這兩個註解之間，完整替換。</p>
+        </div>
+      </section>
+      <!-- SECTION:SKILLS-END -->
+
+
+      <!-- =========================================================
+           Projects 區 — SECTION SLOT
+         ========================================================= -->
+      <!-- SECTION:PROJECTS-START -->
+      <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
+        <div class="container">
+          <h2 id="projects-heading" class="section-title">作品集（占位內容）</h2>
+          <p>本區目前是 Projects 區的占位內容。未來會展示重要專案、圖片、連結與描述。</p>
+          <p>之後會使用 Section SDD 的 Prompt 產生完整作品集排版，請把新的 section 程式碼整段貼回來，取代這兩個註解之間的內容。</p>
+        </div>
+      </section>
+      <!-- SECTION:PROJECTS-END -->
+
+
+      <!-- =========================================================
+           Contact 區 — SECTION SLOT
+         ========================================================= -->
+      <!-- SECTION:CONTACT-START -->
+      <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
+        <div class="container">
+          <h2 id="contact-heading" class="section-title">聯絡我（占位內容）</h2>
+          <p>這裡是 Contact 區占位內容。之後會提供完整聯絡管道，例如 Email、LinkedIn、GitHub 或其他。</p>
+          <p>之後會用 Section SDD 的 Prompt 產生新的 Contact 區排版，請開發者把新 section 程式碼完整貼入這兩個註解間，覆蓋本區。</p>
+
+          <div class="contact-links">
+            <a href="mailto:hello@example.com">Email：hello@example.com</a>
+            <a href="https://github.com/yourname">GitHub</a>
+            <a href="https://www.linkedin.com/in/yourname">LinkedIn</a>
+            <a href="tel:+886900000000">電話：+886 900 000 000</a>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION:CONTACT-END -->
+
+    </main>
+
+
+    <!-- =========================================================
+         Footer 區
+         ========================================================= -->
+    <footer class="section">
+      <div class="container" style="text-align:center; opacity:0.6;">
+        © 2025 Your Name — Frontend Developer. All rights reserved.
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
+
 </body>
 </html>
